@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -10,10 +10,48 @@ const questions = [
         message: "What is your project's name?"
     },
     {
-        name:
-        type: 'list'
-        message: 
-        choices: ['MIT', 'UofT']
+        name: 'contents',
+        type: 'list',
+        message: "Table of Contents:",
+        choices: ['Installation', 'Usage', 'License', 'Contributing', 'Tests', 'Questions']
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'Add some installation instructions:',
+    },
+    {
+        type: 'checkbox',
+        name: 'usage',
+        message: 'What languages were used for this project?',
+        choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+    },
+    {
+        type: 'input',
+        name: 'contributors',
+        message: 'Include contributors to this project:',
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Choose a license:',
+        choices: ['MIT', 'WTFPL', 'Zlib']
+    },
+    {
+        type: 'input',
+        name: 'questions',
+        message: 'Add a link to the Github repo for this project:'
+    },
+    {
+        type: 'input',
+        name: 'questions',
+        message: 'Enter your email address:'
+    },
+    {
+        type: 'confirm',
+        name: 'confirmAddProject',
+        message: 'Would you like to enter another project?',
+        default: false
     }
 ];
 
@@ -26,7 +64,7 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer.prompt(questions).then(responses => {
         const markdown = generateMarkdown(responses);
-        writeToFile('test.md', markdown);
+        writeToFile('readme.md', markdown);
     });
 }
 
