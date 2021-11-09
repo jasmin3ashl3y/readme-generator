@@ -7,45 +7,53 @@ const questions = [
     {
         name: 'title',
         type: 'input',
-        message: "What is your project's name?"
+        message: "What is your project's name?",
+        default: false
     },
     {
         name: 'contents',
         type: 'list',
         message: "Table of Contents:",
-        choices: ['Installation', 'Usage', 'License', 'Contributing', 'Tests', 'Questions']
+        choices: ['Installation', 'Usage', 'License', 'Contributing', 'Tests', 'Questions'],
+        default: false
     },
     {
         type: 'input',
         name: 'installation',
         message: 'Add some installation instructions:',
+        default: false
     },
     {
         type: 'checkbox',
         name: 'usage',
         message: 'What languages were used for this project?',
-        choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+        choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node'],
+        default: false
     },
     {
         type: 'input',
         name: 'contributors',
         message: 'Include contributors to this project:',
+        default: false
     },
     {
         type: 'list',
         name: 'license',
         message: 'Choose a license:',
-        choices: ['MIT', 'WTFPL', 'Zlib']
+        choices: ['MIT', 'WTFPL', 'Zlib'],
+        default: false
     },
     {
         type: 'input',
         name: 'questions',
-        message: 'Add a link to the Github repo for this project:'
+        message: 'Add a link to the Github repo for this project:',
+        default: false
     },
     {
         type: 'input',
         name: 'questions',
-        message: 'Enter your email address:'
+        message: 'Enter your email address:',
+        default: false
     },
     {
         type: 'confirm',
@@ -64,7 +72,7 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer.prompt(questions).then(responses => {
         const markdown = generateMarkdown(responses);
-        writeToFile('readme.md', markdown);
+        writeToFile('README.md', markdown);
     });
 }
 
